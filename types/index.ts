@@ -26,6 +26,12 @@ export interface CountryProfile {
   language: LanguageCode;
 }
 
+export interface LocationResolution {
+  profile: CountryProfile;
+  permissionGranted: boolean;
+  usedFallback: boolean;
+}
+
 export interface ExchangeRateCache {
   baseCurrency: CurrencyCode;
   targetCurrency: CurrencyCode;

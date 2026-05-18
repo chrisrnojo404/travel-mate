@@ -1,13 +1,17 @@
 import * as Location from 'expo-location';
 
 import { countryProfiles, fallbackCountryProfile } from '@/constants/countryProfiles';
-import { CountryProfile } from '@/types';
+import { LocationResolution } from '@/types';
 
-export async function getCurrentCountryProfile(): Promise<CountryProfile> {
+export async function getCurrentCountryProfile(): Promise<LocationResolution> {
   const { status } = await Location.requestForegroundPermissionsAsync();
 
   if (status !== 'granted') {
-    return fallbackCountryProfile;
+    return {
+      profile: fallbackCountryProfile,
+      permissionGranted: false,
+      usedFallback: true,
+    };
   }
 
   const position = await Location.getCurrentPositionAsync({
@@ -18,12 +22,21 @@ export async function getCurrentCountryProfile(): Promise<CountryProfile> {
   const countryCode = geocode[0]?.isoCountryCode?.toUpperCase();
 
   if (!countryCode) {
-    return fallbackCountryProfile;
+    return {
+      profile: fallbackCountryProfile,
+      permissionGranted: true,
+      usedFallback: true,
+    };
   }
 
-  return countryProfiles[countryCode] ?? {
-    ...fallbackCountryProfile,
-    countryCode,
-    countryName: geocode[0]?.country ?? fallbackCountryProfile.countryName,
+  return {
+    profile:
+      countryProfiles[countryCode] ?? {
+        ...fallbackCountryProfile,
+        countryCode,
+        countryName: geocode[0]?.country ?? fallbackCountryProfile.countryName,
+      },
+    permissionGranted: true,
+    usedFallback: !countryProfiles[countryCode],
   };
 }
