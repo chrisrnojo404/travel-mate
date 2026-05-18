@@ -97,6 +97,7 @@ export default function DashboardScreen() {
           <QuickActionTile
             title="Translator"
             description="Translate phrases from your preferred language into the language around you."
+            onPress={() => router.push('/translator')}
           />
           <QuickActionTile
             title="Travel phrases"
