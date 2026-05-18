@@ -1,4 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { DashboardCard } from '@/components/DashboardCard';
 import { ScreenContainer } from '@/components/ScreenContainer';
@@ -11,6 +12,7 @@ import { CountryProfile, CurrencyCode, LanguageCode } from '@/types';
 import { formatTimestamp } from '@/utils/date';
 
 export default function DashboardScreen() {
+  const router = useRouter();
   const homeCurrency = usePreferencesStore((state) => state.homeCurrency);
   const preferredLanguage = usePreferencesStore((state) => state.preferredLanguage);
   const { loading, error, checkedAt, resolution, refresh } = useLocationProfile();
@@ -90,6 +92,7 @@ export default function DashboardScreen() {
           <QuickActionTile
             title="Currency converter"
             description="Convert from your home currency into the local one with cached exchange rates."
+            onPress={() => router.push('/converter')}
           />
           <QuickActionTile
             title="Translator"
