@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '@/constants/theme';
 
@@ -8,67 +9,103 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.accent,
+        tabBarActiveTintColor: colors.textPrimary,
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: colors.cardDark,
+          backgroundColor: '#0b1a2a',
           borderTopColor: colors.border,
-          height: 70,
-          paddingTop: 8,
-          paddingBottom: 10,
+          borderTopWidth: 1,
+          height: 88,
+          paddingTop: 10,
+          paddingBottom: 14,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: '700',
+          marginTop: 2,
         },
+        tabBarItemStyle: {
+          paddingVertical: 6,
+        },
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen
         name="dashboard"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabGlyph color={color} glyph="Home" />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="compass-outline" />
+          ),
         }}
       />
       <Tabs.Screen
         name="converter"
         options={{
-          title: 'Convert',
-          tabBarIcon: ({ color }) => <TabGlyph color={color} glyph="FX" />,
+          title: 'Money',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="cash-multiple" />
+          ),
         }}
       />
       <Tabs.Screen
         name="translator"
         options={{
           title: 'Translate',
-          tabBarIcon: ({ color }) => <TabGlyph color={color} glyph="Talk" />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="translate" />
+          ),
         }}
       />
       <Tabs.Screen
         name="phrases"
         options={{
           title: 'Phrases',
-          tabBarIcon: ({ color }) => <TabGlyph color={color} glyph="Say" />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="message-text-outline" />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <TabGlyph color={color} glyph="Tune" />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="tune-variant" />
+          ),
         }}
       />
     </Tabs>
   );
 }
 
-function TabGlyph({ color, glyph }: { color: string; glyph: string }) {
-  return <Text style={[styles.glyph, { color }]}>{glyph}</Text>;
+function TabIcon({
+  color,
+  focused,
+  name,
+}: {
+  color: string;
+  focused: boolean;
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+}) {
+  return (
+    <View style={[styles.iconWrap, focused ? styles.iconWrapActive : null]}>
+      <MaterialCommunityIcons color={focused ? colors.accent : color} name={name} size={22} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  glyph: {
-    fontSize: 11,
-    fontWeight: '800',
+  iconWrap: {
+    width: 42,
+    height: 34,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconWrapActive: {
+    backgroundColor: 'rgba(25, 194, 160, 0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(25, 194, 160, 0.28)',
   },
 });

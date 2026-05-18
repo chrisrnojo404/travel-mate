@@ -84,6 +84,14 @@ export default function OnboardingScreen() {
         <Text style={styles.summaryText}>
           You can change both any time later from Settings.
         </Text>
+        <View style={styles.summaryMetaRow}>
+          <View style={styles.metaPill}>
+            <Text style={styles.metaPillText}>Currency ready</Text>
+          </View>
+          <View style={styles.metaPill}>
+            <Text style={styles.metaPillText}>Language ready</Text>
+          </View>
+        </View>
       </View>
 
       <PrimaryButton label="Continue to dashboard" onPress={handleContinue} />
@@ -144,5 +152,23 @@ const styles = StyleSheet.create({
     color: '#48627a',
     fontSize: 14,
     lineHeight: 20,
+  },
+  summaryMetaRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+    marginTop: spacing.sm,
+  },
+  metaPill: {
+    backgroundColor: '#e6f7f2',
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 8,
+  },
+  metaPillText: {
+    color: '#1b6e5f',
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 0.2,
   },
 });

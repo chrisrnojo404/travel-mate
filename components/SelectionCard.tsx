@@ -12,6 +12,7 @@ interface SelectionCardProps {
 export function SelectionCard({ title, description, children }: SelectionCardProps) {
   return (
     <View style={styles.card}>
+      <View style={styles.toneBar} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <View style={styles.content}>{children}</View>
@@ -27,6 +28,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     gap: spacing.sm,
+    overflow: 'hidden',
+  },
+  toneBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+    backgroundColor: colors.accent,
+    opacity: 0.9,
   },
   title: {
     color: colors.textPrimary,

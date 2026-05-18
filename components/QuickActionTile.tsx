@@ -15,11 +15,9 @@ export function QuickActionTile({ title, description, onPress }: QuickActionTile
       onPress={onPress}
       style={({ pressed }) => [styles.tile, pressed ? styles.tilePressed : null]}
     >
-      <View style={styles.badge}>
-        <Text style={styles.badgeText}>Soon</Text>
-      </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
+      <Text style={styles.cta}>Tap to open</Text>
     </Pressable>
   );
 }
@@ -34,23 +32,12 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     padding: spacing.md,
     gap: spacing.sm,
+    minHeight: 154,
+    justifyContent: 'space-between',
   },
   tilePressed: {
-    opacity: 0.92,
-  },
-  badge: {
-    alignSelf: 'flex-start',
-    backgroundColor: 'rgba(25, 194, 160, 0.16)',
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 4,
-  },
-  badgeText: {
-    color: colors.accent,
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 0.4,
-    textTransform: 'uppercase',
+    opacity: 0.94,
+    transform: [{ scale: 0.99 }],
   },
   title: {
     color: colors.textPrimary,
@@ -61,5 +48,11 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: 13,
     lineHeight: 19,
+  },
+  cta: {
+    color: colors.accent,
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 0.2,
   },
 });

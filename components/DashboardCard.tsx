@@ -19,6 +19,7 @@ export function DashboardCard({
 }: DashboardCardProps) {
   return (
     <View style={styles.card}>
+      <View style={styles.glow} />
       <View style={styles.header}>
         <View style={styles.copy}>
           {eyebrow ? <Text style={styles.eyebrow}>{eyebrow}</Text> : null}
@@ -40,6 +41,16 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.lg,
     gap: spacing.md,
+    overflow: 'hidden',
+  },
+  glow: {
+    position: 'absolute',
+    top: -24,
+    right: -12,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: 'rgba(25, 194, 160, 0.08)',
   },
   header: {
     flexDirection: 'row',
