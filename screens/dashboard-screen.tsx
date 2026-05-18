@@ -86,7 +86,7 @@ export default function DashboardScreen() {
       <DashboardCard
         eyebrow="Quick actions"
         title="Your next travel tools"
-        description="These screens are next in the build order, and the dashboard is already prepared to hand off into them."
+        description="Open the full tools directly or jump there from the menu below."
       >
         <View style={styles.actionGrid}>
           <QuickActionTile
@@ -102,10 +102,12 @@ export default function DashboardScreen() {
           <QuickActionTile
             title="Travel phrases"
             description="Open essential travel phrases already targeted to the detected local language."
+            onPress={() => router.push('/phrases')}
           />
           <QuickActionTile
             title="Settings"
             description="Adjust your defaults, clear cached data, or switch to manual preferences."
+            onPress={() => router.push('/settings')}
           />
         </View>
       </DashboardCard>
@@ -138,19 +140,15 @@ function getLocationDescription(input: {
   if (input.loading) {
     return 'We are matching your current country to its local currency and main language.';
   }
-
   if (input.error) {
     return input.error;
   }
-
   if (!input.permissionGranted) {
     return 'Location access is off, so TravelMate is using safe fallback defaults until you allow permission.';
   }
-
   if (input.usedFallback) {
     return 'We found your location but used fallback defaults because the country is not mapped yet.';
   }
-
   return 'Your dashboard is now tuned to local money and language context.';
 }
 
@@ -173,9 +171,7 @@ function ProfileRow({ label, value }: { label: string; value: string }) {
 }
 
 const styles = StyleSheet.create({
-  hero: {
-    gap: spacing.md,
-  },
+  hero: { gap: spacing.md },
   heroBadge: {
     alignSelf: 'flex-start',
     backgroundColor: 'rgba(25, 194, 160, 0.15)',
@@ -190,17 +186,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
     textTransform: 'uppercase',
   },
-  heroTitle: {
-    color: colors.textPrimary,
-    fontSize: 34,
-    fontWeight: '800',
-    lineHeight: 40,
-  },
-  heroSubtitle: {
-    color: colors.textSecondary,
-    fontSize: 16,
-    lineHeight: 24,
-  },
+  heroTitle: { color: colors.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 40 },
+  heroSubtitle: { color: colors.textSecondary, fontSize: 16, lineHeight: 24 },
   refreshButton: {
     minWidth: 84,
     alignItems: 'center',
@@ -211,27 +198,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
   },
-  refreshText: {
-    color: colors.textPrimary,
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  loadingState: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-  },
-  loadingText: {
-    flex: 1,
-    color: colors.textSecondary,
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  metricGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
+  refreshText: { color: colors.textPrimary, fontSize: 13, fontWeight: '700' },
+  loadingState: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  loadingText: { flex: 1, color: colors.textSecondary, fontSize: 14, lineHeight: 20 },
+  metricGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   metricPill: {
     minWidth: '48%',
     flexGrow: 1,
@@ -247,15 +217,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
     textTransform: 'uppercase',
   },
-  metricValue: {
-    color: colors.textDark,
-    fontSize: 18,
-    fontWeight: '800',
-    lineHeight: 24,
-  },
-  profileGrid: {
-    gap: spacing.sm,
-  },
+  metricValue: { color: colors.textDark, fontSize: 18, fontWeight: '800', lineHeight: 24 },
+  profileGrid: { gap: spacing.sm },
   profileRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -268,12 +231,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
   },
-  profileLabel: {
-    flex: 1,
-    color: colors.textSecondary,
-    fontSize: 14,
-    fontWeight: '600',
-  },
+  profileLabel: { flex: 1, color: colors.textSecondary, fontSize: 14, fontWeight: '600' },
   profileValue: {
     flexShrink: 1,
     color: colors.textPrimary,
@@ -281,9 +239,5 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'right',
   },
-  actionGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
+  actionGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
 });

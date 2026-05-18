@@ -4,4 +4,4 @@ export const baseTravelPhrases = [
   'I need help.',
   'Can you take me to this hotel?',
   'Do you speak English?',
-];
+] as const;

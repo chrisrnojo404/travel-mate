@@ -23,7 +23,7 @@ export default function IndexScreen() {
     );
   }
 
-  return <Redirect href={onboardingCompleted ? '/dashboard' : '/onboarding'} />;
+  return <Redirect href={onboardingCompleted ? '/(tabs)/dashboard' : '/onboarding'} />;
 }
 
 const styles = StyleSheet.create({

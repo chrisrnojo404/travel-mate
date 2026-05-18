@@ -32,7 +32,7 @@ export default function OnboardingScreen() {
     setHomeCurrency(homeCurrency as CurrencyCode);
     setPreferredLanguage(preferredLanguage as LanguageCode);
     completeOnboarding();
-    router.replace('/dashboard');
+    router.replace('/(tabs)/dashboard');
   };
 
   return (

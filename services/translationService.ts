@@ -20,6 +20,30 @@ const phraseDictionary: Record<string, Partial<Record<LanguageCode, string>>> = 
     de: 'Wo ist die Toilette?',
     ja: 'Toire wa doko desu ka?',
   },
+  'I need help.': {
+    es: 'Necesito ayuda.',
+    fr: "J'ai besoin d'aide.",
+    nl: 'Ik heb hulp nodig.',
+    pt: 'Preciso de ajuda.',
+    de: 'Ich brauche Hilfe.',
+    ja: 'Tasuke ga hitsuyo desu.',
+  },
+  'Can you take me to this hotel?': {
+    es: 'Puede llevarme a este hotel?',
+    fr: 'Pouvez-vous me conduire a cet hotel ?',
+    nl: 'Kunt u mij naar dit hotel brengen?',
+    pt: 'Pode me levar para este hotel?',
+    de: 'Konnen Sie mich zu diesem Hotel bringen?',
+    ja: 'Kono hoteru made tsurete itte moraemasu ka?',
+  },
+  'Do you speak English?': {
+    es: 'Habla ingles?',
+    fr: 'Parlez-vous anglais ?',
+    nl: 'Spreekt u Engels?',
+    pt: 'Voce fala ingles?',
+    de: 'Sprechen Sie Englisch?',
+    ja: 'Eigo o hanasemasu ka?',
+  },
 };
 
 function buildMockTranslation(text: string, targetLanguage: LanguageCode): string {
