@@ -246,5 +246,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'right',
   },
-  actionGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+  actionGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    gap: spacing.sm,
+  },
 });

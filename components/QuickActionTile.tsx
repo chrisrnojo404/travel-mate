@@ -15,8 +15,10 @@ export function QuickActionTile({ title, description, onPress }: QuickActionTile
       onPress={onPress}
       style={({ pressed }) => [styles.tile, pressed ? styles.tilePressed : null]}
     >
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <View style={styles.copyBlock}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
       <Text style={styles.cta}>Tap to open</Text>
     </Pressable>
   );
@@ -24,21 +26,26 @@ export function QuickActionTile({ title, description, onPress }: QuickActionTile
 
 const styles = StyleSheet.create({
   tile: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
     minWidth: 150,
+    maxWidth: 280,
+    alignSelf: 'flex-start',
     backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: radius.md,
     padding: spacing.md,
     gap: spacing.sm,
-    minHeight: 154,
-    justifyContent: 'space-between',
+    minHeight: 168,
     shadowColor: '#a8b9a8',
     shadowOpacity: 0.06,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
     elevation: 1,
+  },
+  copyBlock: {
+    gap: spacing.sm,
   },
   tilePressed: {
     opacity: 0.94,
