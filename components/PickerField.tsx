@@ -18,7 +18,7 @@ export function PickerField({ selectedValue, onValueChange, items }: PickerField
   return (
     <View style={styles.wrapper}>
       <Picker
-        dropdownIconColor={colors.textPrimary}
+        dropdownIconColor={colors.textSecondary}
         itemStyle={styles.item}
         selectedValue={selectedValue}
         onValueChange={(value) => onValueChange(String(value))}

@@ -19,6 +19,13 @@ export async function getCurrentCountryProfile(): Promise<LocationResolution> {
   });
 
   const geocode = await Location.reverseGeocodeAsync(position.coords);
+  const cityName =
+    geocode[0]?.city ??
+    geocode[0]?.district ??
+    geocode[0]?.subregion ??
+    geocode[0]?.region ??
+    fallbackCountryProfile.cityName;
+  const regionName = geocode[0]?.region ?? geocode[0]?.subregion ?? undefined;
   const countryCode = geocode[0]?.isoCountryCode?.toUpperCase();
 
   if (!countryCode) {
@@ -31,10 +38,14 @@ export async function getCurrentCountryProfile(): Promise<LocationResolution> {
 
   return {
     profile:
-      countryProfiles[countryCode] ?? {
-        ...fallbackCountryProfile,
-        countryCode,
-        countryName: geocode[0]?.country ?? fallbackCountryProfile.countryName,
+      {
+        ...(countryProfiles[countryCode] ?? {
+          ...fallbackCountryProfile,
+          countryCode,
+          countryName: geocode[0]?.country ?? fallbackCountryProfile.countryName,
+        }),
+        cityName,
+        regionName,
       },
     permissionGranted: true,
     usedFallback: !countryProfiles[countryCode],

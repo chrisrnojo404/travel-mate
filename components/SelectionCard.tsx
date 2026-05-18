@@ -29,6 +29,11 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     gap: spacing.sm,
     overflow: 'hidden',
+    shadowColor: '#9cb0a1',
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 2,
   },
   toneBar: {
     position: 'absolute',

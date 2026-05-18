@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     minHeight: 154,
     justifyContent: 'space-between',
+    shadowColor: '#a8b9a8',
+    shadowOpacity: 0.06,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 1,
   },
   tilePressed: {
     opacity: 0.94,
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   cta: {
-    color: colors.accent,
+    color: colors.accentStrong,
     fontSize: 12,
     fontWeight: '700',
     letterSpacing: 0.2,

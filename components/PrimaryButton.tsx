@@ -26,7 +26,7 @@ export function PrimaryButton({
         disabled ? styles.buttonDisabled : null,
       ]}
     >
-      {loading ? <ActivityIndicator color={colors.textDark} /> : <Text style={styles.label}>{label}</Text>}
+      {loading ? <ActivityIndicator color="#ffffff" /> : <Text style={styles.label}>{label}</Text>}
     </Pressable>
   );
 }
@@ -35,10 +35,15 @@ const styles = StyleSheet.create({
   button: {
     minHeight: 56,
     borderRadius: radius.pill,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentStrong,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: spacing.lg,
+    shadowColor: '#82a287',
+    shadowOpacity: 0.14,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 2,
   },
   buttonPressed: {
     opacity: 0.92,
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   label: {
-    color: colors.textDark,
+    color: '#ffffff',
     fontSize: 17,
     fontWeight: '700',
   },

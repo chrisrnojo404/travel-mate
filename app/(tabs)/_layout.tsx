@@ -9,23 +9,30 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.textPrimary,
+        tabBarActiveTintColor: colors.accentStrong,
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: '#0b1a2a',
+          backgroundColor: 'rgba(255, 251, 244, 0.98)',
           borderTopColor: colors.border,
           borderTopWidth: 1,
-          height: 88,
+          height: 92,
           paddingTop: 10,
           paddingBottom: 14,
+          shadowColor: '#9fb2a2',
+          shadowOpacity: 0.1,
+          shadowRadius: 20,
+          shadowOffset: { width: 0, height: -6 },
+          elevation: 8,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
+          fontSize: 9,
           fontWeight: '700',
-          marginTop: 2,
+          marginTop: 1,
+          letterSpacing: 0.1,
         },
         tabBarItemStyle: {
-          paddingVertical: 6,
+          paddingVertical: 4,
+          paddingHorizontal: 0,
         },
         tabBarHideOnKeyboard: true,
       }}
@@ -42,7 +49,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="converter"
         options={{
-          title: 'Money',
+          title: 'Currency',
           tabBarIcon: ({ color, focused }) => (
             <TabIcon color={color} focused={focused} name="cash-multiple" />
           ),
@@ -78,7 +85,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
+          title: 'Prefs',
           tabBarIcon: ({ color, focused }) => (
             <TabIcon color={color} focused={focused} name="tune-variant" />
           ),
@@ -99,22 +106,22 @@ function TabIcon({
 }) {
   return (
     <View style={[styles.iconWrap, focused ? styles.iconWrapActive : null]}>
-      <MaterialCommunityIcons color={focused ? colors.accent : color} name={name} size={22} />
+      <MaterialCommunityIcons color={focused ? colors.accent : color} name={name} size={20} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   iconWrap: {
-    width: 42,
-    height: 34,
+    width: 34,
+    height: 30,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   iconWrapActive: {
-    backgroundColor: 'rgba(25, 194, 160, 0.14)',
+    backgroundColor: 'rgba(43, 182, 115, 0.12)',
     borderWidth: 1,
-    borderColor: 'rgba(25, 194, 160, 0.28)',
+    borderColor: 'rgba(43, 182, 115, 0.22)',
   },
 });

@@ -94,27 +94,27 @@ export default function DashboardScreen() {
           <QuickActionTile
             title="Currency converter"
             description="Convert from your home currency into the local one with cached exchange rates."
-            onPress={() => router.push('/converter')}
+            onPress={() => router.push('/(tabs)/converter')}
           />
           <QuickActionTile
             title="Translator"
             description="Translate phrases from your preferred language into the language around you."
-            onPress={() => router.push('/translator')}
+            onPress={() => router.push('/(tabs)/translator')}
           />
           <QuickActionTile
             title="Travel phrases"
             description="Open essential travel phrases already targeted to the detected local language."
-            onPress={() => router.push('/phrases')}
+            onPress={() => router.push('/(tabs)/phrases')}
           />
           <QuickActionTile
             title="Settings"
             description="Adjust your defaults, clear cached data, or switch to manual preferences."
-            onPress={() => router.push('/settings')}
+            onPress={() => router.push('/(tabs)/settings')}
           />
           <QuickActionTile
             title="Travel history"
             description="Review countries you have visited and the local details TravelMate recorded."
-            onPress={() => router.push('/history')}
+            onPress={() => router.push('/(tabs)/history')}
           />
         </View>
       </DashboardCard>

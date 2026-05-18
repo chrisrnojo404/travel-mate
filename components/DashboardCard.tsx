@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     gap: spacing.md,
     overflow: 'hidden',
+    shadowColor: '#9cb0a1',
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 2,
   },
   glow: {
     position: 'absolute',
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: 'rgba(25, 194, 160, 0.08)',
+    backgroundColor: 'rgba(43, 182, 115, 0.10)',
   },
   header: {
     flexDirection: 'row',

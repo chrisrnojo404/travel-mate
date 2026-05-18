@@ -16,6 +16,10 @@ async function persistEntries(entries: TravelHistoryEntry[]): Promise<void> {
   await AsyncStorage.setItem(STORAGE_KEYS.history, JSON.stringify(entries));
 }
 
+function getEntryId(profile: CountryProfile): string {
+  return `${profile.countryCode}:${profile.cityName.trim().toLowerCase()}`;
+}
+
 function isSameCalendarDay(first: string, second: string): boolean {
   return new Date(first).toDateString() === new Date(second).toDateString();
 }
@@ -27,8 +31,24 @@ export const useHistoryStore = create<HistoryStore>((set, get) => ({
     try {
       const raw = await AsyncStorage.getItem(STORAGE_KEYS.history);
       if (raw) {
+        const parsedEntries = JSON.parse(raw) as Partial<TravelHistoryEntry>[];
         set({
-          entries: JSON.parse(raw) as TravelHistoryEntry[],
+          entries: parsedEntries.map((entry) => ({
+            id:
+              entry.id ??
+              `${entry.countryCode ?? 'XX'}:${(entry.cityName ?? entry.countryName ?? 'unknown')
+                .trim()
+                .toLowerCase()}`,
+            countryCode: entry.countryCode ?? 'XX',
+            countryName: entry.countryName ?? 'Unknown Country',
+            cityName: entry.cityName ?? entry.countryName ?? 'Unknown City',
+            regionName: entry.regionName,
+            currency: entry.currency ?? 'USD',
+            language: entry.language ?? 'en',
+            firstVisitedAt: entry.firstVisitedAt ?? new Date().toISOString(),
+            lastVisitedAt: entry.lastVisitedAt ?? entry.firstVisitedAt ?? new Date().toISOString(),
+            visitCount: entry.visitCount ?? 1,
+          })),
           hydrated: true,
         });
         return;
@@ -44,15 +64,19 @@ export const useHistoryStore = create<HistoryStore>((set, get) => ({
   },
   recordVisit: async (profile, visitedAt = new Date().toISOString()) => {
     const currentEntries = get().entries;
-    const existingEntry = currentEntries.find((entry) => entry.countryCode === profile.countryCode);
+    const entryId = getEntryId(profile);
+    const existingEntry = currentEntries.find((entry) => entry.id === entryId);
 
     let nextEntries: TravelHistoryEntry[];
 
     if (!existingEntry) {
       nextEntries = [
         {
+          id: entryId,
           countryCode: profile.countryCode,
           countryName: profile.countryName,
+          cityName: profile.cityName,
+          regionName: profile.regionName,
           currency: profile.currency,
           language: profile.language,
           firstVisitedAt: visitedAt,
@@ -63,13 +87,15 @@ export const useHistoryStore = create<HistoryStore>((set, get) => ({
       ];
     } else {
       nextEntries = currentEntries.map((entry) => {
-        if (entry.countryCode !== profile.countryCode) {
+        if (entry.id !== entryId) {
           return entry;
         }
 
         return {
           ...entry,
           countryName: profile.countryName,
+          cityName: profile.cityName,
+          regionName: profile.regionName,
           currency: profile.currency,
           language: profile.language,
           lastVisitedAt: visitedAt,
@@ -90,6 +116,6 @@ export const useHistoryStore = create<HistoryStore>((set, get) => ({
   },
   clearHistory: async () => {
     await AsyncStorage.removeItem(STORAGE_KEYS.history);
-    set({ entries: [] });
+    set({ entries: [], hydrated: true });
   },
 }));

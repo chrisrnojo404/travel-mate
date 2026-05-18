@@ -22,6 +22,8 @@ export interface UserPreferences {
 export interface CountryProfile {
   countryCode: string;
   countryName: string;
+  cityName: string;
+  regionName?: string;
   currency: CurrencyCode;
   language: LanguageCode;
 }
@@ -47,8 +49,11 @@ export interface TranslationResult {
 }
 
 export interface TravelHistoryEntry {
+  id: string;
   countryCode: string;
   countryName: string;
+  cityName: string;
+  regionName?: string;
   currency: CurrencyCode;
   language: LanguageCode;
   firstVisitedAt: string;
