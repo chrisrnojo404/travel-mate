@@ -67,6 +67,15 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="history"
+        options={{
+          title: 'Trips',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon color={color} focused={focused} name="map-marker-path" />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',

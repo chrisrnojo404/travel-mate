@@ -7,6 +7,7 @@ import { QuickActionTile } from '@/components/QuickActionTile';
 import { currencyOptions, languageOptions } from '@/constants/options';
 import { colors, radius, spacing } from '@/constants/theme';
 import { useLocationProfile } from '@/hooks/useLocationProfile';
+import { useTravelHistoryTracker } from '@/hooks/useTravelHistoryTracker';
 import { usePreferencesStore } from '@/store/preferencesStore';
 import { CountryProfile, CurrencyCode, LanguageCode } from '@/types';
 import { formatTimestamp } from '@/utils/date';
@@ -16,6 +17,7 @@ export default function DashboardScreen() {
   const homeCurrency = usePreferencesStore((state) => state.homeCurrency);
   const preferredLanguage = usePreferencesStore((state) => state.preferredLanguage);
   const { loading, error, checkedAt, resolution, refresh } = useLocationProfile();
+  useTravelHistoryTracker(resolution, checkedAt);
 
   const locationProfile = resolution?.profile;
   const localCurrencyLabel = getCurrencyLabel(locationProfile?.currency ?? homeCurrency);
@@ -108,6 +110,11 @@ export default function DashboardScreen() {
             title="Settings"
             description="Adjust your defaults, clear cached data, or switch to manual preferences."
             onPress={() => router.push('/settings')}
+          />
+          <QuickActionTile
+            title="Travel history"
+            description="Review countries you have visited and the local details TravelMate recorded."
+            onPress={() => router.push('/history')}
           />
         </View>
       </DashboardCard>

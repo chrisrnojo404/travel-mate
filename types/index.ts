@@ -45,3 +45,13 @@ export interface TranslationResult {
   targetLanguage: LanguageCode;
   provider: 'mock' | 'api';
 }
+
+export interface TravelHistoryEntry {
+  countryCode: string;
+  countryName: string;
+  currency: CurrencyCode;
+  language: LanguageCode;
+  firstVisitedAt: string;
+  lastVisitedAt: string;
+  visitCount: number;
+}
